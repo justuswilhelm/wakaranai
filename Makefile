@@ -7,8 +7,6 @@ SRC=$(APPLICATION)/Main.elm $(wildcard $(APPLICATION)/*.elm) $(wildcard $(APPLIC
 ELM_MAKE=elm-make
 ELM_MAKE_FLAG=--warn --yes
 
-GIT_BRANCH=gh-pages
-
 all: $(TARGET)
 
 $(TARGET): $(BUILD)
@@ -40,6 +38,3 @@ dependencies:
 
 serve:
 	cd $(BUILD) && python -m SimpleHTTPServer 3000
-
-deploy: all
-	./deploy.sh
