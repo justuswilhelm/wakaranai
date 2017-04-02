@@ -20,9 +20,6 @@ $(BUILD)/main.js: $(SRC)
 $(BUILD)/index.html: pages/index.html
 	cp $< $@
 
-$(BUILD)/CNAME: CNAME
-	cp $< $@
-
 format:
 	elm-format-0.17 $(APPLICATION)/*.elm --yes
 

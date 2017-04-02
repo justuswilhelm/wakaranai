@@ -6,11 +6,9 @@ module Model
 
 
 type alias Model =
-    {
-    }
+    {}
 
 
 init : Model
 init =
-    {
-    }
+    {}
