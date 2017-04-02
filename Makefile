@@ -21,7 +21,7 @@ $(BUILD)/index.html: pages/index.html
 	cp $< $@
 
 format:
-	elm-format-0.17 $(APPLICATION)/*.elm --yes
+	elm-format-0.18 $(SRC)/*.elm --yes
 
 clean:
 	rm -rf elm-stuff/build-artifacts/
