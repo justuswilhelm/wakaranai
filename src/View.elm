@@ -7,4 +7,4 @@ import Msg exposing (..)
 
 view : Model -> Html Msg
 view model =
-    div [] []
+    p [] [ text "Hello, World!" ]

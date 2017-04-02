@@ -1,9 +1,9 @@
 .PHONY=all clean format reactor serve
 
-APPLICATION=application
 BUILD=build
-TARGET=build/main.js build/index.html build/CNAME
-SRC=$(APPLICATION)/Main.elm $(wildcard $(APPLICATION)/*.elm) $(wildcard $(APPLICATION)/Native/*.js)
+TARGET=build/main.js build/index.html
+SRC_PATH=src
+SRC=$(SRC_PATH)/Main.elm $(shell find src -name '*.elm' -o -name '*.js')
 ELM_MAKE=elm-make
 ELM_MAKE_FLAG=--warn --yes
 
@@ -20,8 +20,8 @@ $(BUILD)/main.js: $(SRC)
 $(BUILD)/index.html: pages/index.html
 	cp $< $@
 
-format:
-	elm-format-0.18 $(SRC)/*.elm --yes
+format: $(filter %.elm, $(SRC))
+	elm-format-0.18 $^ --yes
 
 clean:
 	rm -rf elm-stuff/build-artifacts/
