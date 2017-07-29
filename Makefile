@@ -36,7 +36,7 @@ clean:
 
 live: $(SRC)
 	elm-live \
-		--output=$(TARGET_JS) $< \
+		--output=$(STATIC_PATH)/main.js $< \
 		--pushstate \
 		--open \
 		--debug \
