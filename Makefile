@@ -41,3 +41,6 @@ live: $(SRC)
 		--open \
 		--debug \
 		--dir=$(STATIC_PATH)
+
+cloc:
+	cloc --vcs=git
