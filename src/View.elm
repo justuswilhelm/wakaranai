@@ -3,9 +3,12 @@ module View exposing (view)
 import Html exposing (..)
 import Model exposing (Model)
 import Msg exposing (..)
-import View.Index
+import View.Home
+import Model.PageState exposing (Page(..))
 
 
 view : Model -> Html Msg
-view =
-    View.Index.view
+view model =
+    case model.pageState.page of
+        Home ->
+            View.Home.view model

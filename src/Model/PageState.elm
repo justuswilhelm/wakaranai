@@ -6,9 +6,9 @@ type Page
 
 
 type alias PageState =
-    { currentPage : Page }
+    { page : Page }
 
 
 init : PageState
 init =
-    { currentPage = Home }
+    { page = Home }
