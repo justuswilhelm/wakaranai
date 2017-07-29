@@ -1,11 +1,17 @@
-.PHONY=all clean format reactor serve
+.PHONY: all clean format reactor serve
 
-BUILD=build
-TARGET=build/main.js build/index.html
-SRC_PATH=src
-SRC=$(SRC_PATH)/Main.elm $(shell find src -name '*.elm' -o -name '*.js')
-ELM_MAKE=elm-make
-ELM_MAKE_FLAG=--warn --yes
+SRC_PATH := src
+STATIC_PATH := static
+
+ELM_MAKE := elm-make
+ELM_MAKE_FLAG := --warn --yes
+
+BUILD := build
+TARGET_JS := $(BUILD)/main.js
+TARGET := $(TARGET_JS) $(BUILD)/index.html
+SRC_JS := $(shell find $(SRC_PATH) -name '*.elm')
+SRC_ELM := $(shell find $(SRC_PATH) -name '*.js')
+SRC := $(SRC_PATH)/Main.elm $(SRC_JS) $(SRC_ELM)
 
 all: $(TARGET)
 
@@ -14,10 +20,10 @@ $(TARGET): $(BUILD)
 $(BUILD):
 	mkdir $@
 
-$(BUILD)/main.js: $(SRC)
+$(BUILD)/main.js: $(SRC) $(BUILD)
 	$(ELM_MAKE) $< --output $@ $(ELM_MAKE_FLAG)
 
-$(BUILD)/index.html: pages/index.html
+$(BUILD)/%.html: %.html $(BUILD)
 	cp $< $@
 
 format: $(filter %.elm, $(SRC))
@@ -26,12 +32,12 @@ format: $(filter %.elm, $(SRC))
 clean:
 	rm -rf elm-stuff/build-artifacts/
 	rm -f $(TARGET)
+	rm -rf $(BUILD)
 
-reactor:
-	elm-reactor
-
-dependencies:
-	elm-package install
-
-serve:
-	cd $(BUILD) && python -m SimpleHTTPServer 3000
+live: $(SRC)
+	elm-live \
+		--output=$(TARGET_JS) $< \
+		--pushstate \
+		--open \
+		--debug \
+		--dir=$(STATIC_PATH)
