@@ -1,8 +1,8 @@
 # Elm Template
 
-Use [cookiecutter](http://cookiecutter.readthedocs.io/en/latest/) to initialize
-this project:
+## Quickstart
 
 ```
-cookiecutter https://github.com/justuswilhelm/elm-template
+npm install -g elm elm-live
+make live
 ```
