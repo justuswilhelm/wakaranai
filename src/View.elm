@@ -1,6 +1,7 @@
 module View exposing (view)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Model exposing (Model)
 import Msg exposing (..)
 import Model.PageState exposing (Page(..))
@@ -11,15 +12,25 @@ import Router exposing (reverseHref)
 
 viewNav : Page -> Html Msg
 viewNav page =
-    nav []
-        [ a [ reverseHref Home ] [ text "Home" ]
-        , a [ reverseHref About ] [ text "About" ]
+    nav
+        [ class "navbar" ]
+        [ a
+            [ reverseHref Home
+            , class "navbar-item"
+            ]
+            [ text "Home" ]
+        , a
+            [ reverseHref About
+            , class "navbar-item"
+            ]
+            [ text "About" ]
         ]
 
 
 viewFooter : Html Msg
 viewFooter =
-    footer []
+    footer
+        [ class "footer" ]
         [ p [] [ text "This is the footer" ]
         ]
 
@@ -28,11 +39,12 @@ view : Model -> Html Msg
 view model =
     div []
         [ viewNav model.pageState.page
-        , case model.pageState.page of
-            Home ->
-                View.Home.view model
+        , main_ [] <|
+            case model.pageState.page of
+                Home ->
+                    View.Home.view model
 
-            About ->
-                View.About.view model
+                About ->
+                    View.About.view model
         , viewFooter
         ]

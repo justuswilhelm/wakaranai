@@ -5,6 +5,7 @@ import Model exposing (Model)
 import Msg exposing (..)
 
 
-view : Model -> Html Msg
+view : Model -> List (Html Msg)
 view model =
-    p [] [ text "Hello, World! This is the About Page." ]
+    [ p [] [ text "Hello, World! This is the About Page." ]
+    ]
