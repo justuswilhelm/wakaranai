@@ -8,6 +8,7 @@ module Model.PageState
 
 type Page
     = Home
+    | About
 
 
 type alias PageState =

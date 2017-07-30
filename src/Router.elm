@@ -3,8 +3,12 @@ module Router
         ( route
         , routeMsg
         , routeInit
+        , reverse
+        , reverseHref
         )
 
+import Html
+import Html.Attributes
 import UrlParser exposing (Parser, (</>), s, int, string, map, oneOf, parseHash)
 import Msg
 import Navigation
@@ -16,6 +20,7 @@ route : Parser (Page -> a) a
 route =
     oneOf
         [ map Home (s "home")
+        , map About (s "about")
         ]
 
 
@@ -27,3 +32,19 @@ routeMsg loc =
 routeInit : Navigation.Location -> Model.Model
 routeInit loc =
     Model.init <| Maybe.withDefault Home <| parseHash route loc
+
+
+reverse : Page -> String
+reverse page =
+    ((++) "#") <|
+        case page of
+            Home ->
+                "home"
+
+            About ->
+                "about"
+
+
+reverseHref : Page -> Html.Attribute Msg.Msg
+reverseHref =
+    Html.Attributes.href << reverse

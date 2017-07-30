@@ -12,4 +12,8 @@ update msg model =
     in
         case msg of
             Navigate page ->
-                { model | pageState = { pageState | page = page } } ! []
+                let
+                    model_ =
+                        { model | pageState = { pageState | page = page } }
+                in
+                    model_ ! []
