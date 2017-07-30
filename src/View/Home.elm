@@ -8,10 +8,7 @@ import Msg exposing (..)
 
 view : Model -> List (Html Msg)
 view model =
-    [ section
-        [ class "section" ]
-        [ div [ class "content" ]
-            [ p [] [ text "Hello, World! This is the Home Page." ]
-            ]
+    [ div [ class "content" ]
+        [ p [] [ text "Hello, World! This is the Home Page." ]
         ]
     ]

@@ -39,7 +39,7 @@ view : Model -> Html Msg
 view model =
     div []
         [ viewNav model.pageState.page
-        , main_ [] <|
+        , section [ class "section" ] <|
             case model.pageState.page of
                 Home ->
                     View.Home.view model
