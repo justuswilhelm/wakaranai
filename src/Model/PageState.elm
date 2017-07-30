@@ -1,4 +1,10 @@
-module Model.PageState exposing (Page(..), PageState, init)
+module Model.PageState
+    exposing
+        ( Page(..)
+        , PageState
+        , init
+        , parseHash
+        )
 
 
 type Page
@@ -9,6 +15,20 @@ type alias PageState =
     { page : Page }
 
 
-init : PageState
-init =
-    { page = Home }
+init : Page -> PageState
+init page =
+    { page = page }
+
+
+
+--- Decoders
+
+
+parseHash : String -> Page
+parseHash fragment =
+    case fragment of
+        "home" ->
+            Home
+
+        _ ->
+            Home

@@ -14,8 +14,8 @@ type alias Model =
     }
 
 
-init : Model
-init =
+init : Model.PageState.Page -> Model
+init page =
     { session = Model.Session.init
-    , pageState = Model.PageState.init
+    , pageState = Model.PageState.init page
     }
