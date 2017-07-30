@@ -3,7 +3,6 @@ module Model.PageState
         ( Page(..)
         , PageState
         , init
-        , parseHash
         )
 
 
@@ -18,17 +17,3 @@ type alias PageState =
 init : Page -> PageState
 init page =
     { page = page }
-
-
-
---- Decoders
-
-
-parseHash : String -> Page
-parseHash fragment =
-    case fragment of
-        "home" ->
-            Home
-
-        _ ->
-            Home
