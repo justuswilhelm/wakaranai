@@ -1,11 +1,12 @@
 module Update.PageState exposing (update)
 
-import Msg
-import Msg.PageState exposing (..)
 import Model exposing (Model)
+import Msg
+import Msg exposing (..)
+import Msg.PageState exposing (..)
 
 
-update : Msg -> Model -> ( Model, Cmd Msg.Msg )
+update : Msg.PageState.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg model =
     let
         pageState =
