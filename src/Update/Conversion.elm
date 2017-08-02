@@ -61,6 +61,26 @@ toDigit position number =
                         , Just '億'
                         )
 
+                    3 ->
+                        ( case number of
+                            '0' ->
+                                Nothing
+
+                            _ ->
+                                Just number
+                        , Just '兆'
+                        )
+
+                    4 ->
+                        ( case number of
+                            '0' ->
+                                Nothing
+
+                            _ ->
+                                Just number
+                        , Just '京'
+                        )
+
                     _ ->
                         ( Nothing, Nothing )
 
