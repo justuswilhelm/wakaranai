@@ -23,8 +23,7 @@ view model =
                 , onInput (Msg.Conversion << Msg.Conversion.EnterArabic)
                 , value <|
                     Maybe.withDefault "" <|
-                        Maybe.map toString <|
-                            model.conversion.arabic
+                        model.conversion.arabic
                 ]
                 []
             ]

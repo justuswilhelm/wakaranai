@@ -2,7 +2,7 @@ module Model.Conversion exposing (Conversion, init)
 
 
 type alias Conversion =
-    { arabic : Maybe Int
+    { arabic : Maybe String
     , japanese : Maybe String
     }
 
