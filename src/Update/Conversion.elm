@@ -34,9 +34,13 @@ toDigit position number =
             )
 
         mapSignificant digit =
-            ( greaterOne
-            , Just digit
-            )
+            case number of
+                '0' ->
+                    ( Nothing, Nothing)
+                '1' ->
+                    ( Nothing, Just digit)
+                _ ->
+                    ( greaterZero , Just digit)
     in
         case position % 4 of
             0 ->
