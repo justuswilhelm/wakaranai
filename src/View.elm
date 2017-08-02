@@ -14,28 +14,32 @@ viewNav : Page -> Html Msg
 viewNav page =
     nav
         [ class "navbar" ]
-        [ a
-            [ reverseHref Home
-            , class "navbar-item"
+        [ div [ class "container" ]
+            [ a
+                [ reverseHref Home
+                , class "navbar-item"
+                ]
+                [ text "Home" ]
+            , a
+                [ reverseHref About
+                , class "navbar-item"
+                ]
+                [ text "About" ]
             ]
-            [ text "Home" ]
-        , a
-            [ reverseHref About
-            , class "navbar-item"
-            ]
-            [ text "About" ]
         ]
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ section [ class "section" ] <|
-            case model.pageState.page of
-                Home ->
-                    View.Home.view model
+        [ section [ class "section" ]
+            [ div [ class "container" ] <|
+                case model.pageState.page of
+                    Home ->
+                        View.Home.view model
 
-                About ->
-                    View.About.view model
+                    About ->
+                        View.About.view model
+            ]
         , viewNav model.pageState.page
         ]

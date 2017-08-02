@@ -174,6 +174,7 @@ updateConversion input model =
             case input of
                 "" ->
                     Nothing
+
                 input ->
                     case Result.toMaybe <| String.toInt input of
                         Nothing ->
