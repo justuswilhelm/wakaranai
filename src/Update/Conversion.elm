@@ -1,5 +1,6 @@
 module Update.Conversion exposing (update)
 
+import Dict
 import Msg
 import Msg.Conversion exposing (..)
 import Model exposing (Model)
@@ -36,11 +37,13 @@ toDigit position number =
         mapSignificant digit =
             case number of
                 '0' ->
-                    ( Nothing, Nothing)
+                    ( Nothing, Nothing )
+
                 '1' ->
-                    ( Nothing, Just digit)
+                    ( Nothing, Just digit )
+
                 _ ->
-                    ( greaterZero , Just digit)
+                    ( greaterZero, Just digit )
     in
         case position % 4 of
             0 ->
@@ -81,44 +84,22 @@ toDigit position number =
 arabicToJapanese : String -> String
 arabicToJapanese arabic =
     let
+        digits =
+            Dict.fromList
+                [ ( '0', '○' )
+                , ( '1', '一' )
+                , ( '2', '二' )
+                , ( '3', '三' )
+                , ( '4', '四' )
+                , ( '5', '五' )
+                , ( '6', '六' )
+                , ( '7', '七' )
+                , ( '8', '八' )
+                , ( '9', '九' )
+                ]
+
         convertNumber ( a, b ) =
-            ( Maybe.map
-                (\a ->
-                    case a of
-                        '0' ->
-                            '○'
-
-                        '1' ->
-                            '一'
-
-                        '2' ->
-                            '二'
-
-                        '3' ->
-                            '三'
-
-                        '4' ->
-                            '四'
-
-                        '5' ->
-                            '五'
-
-                        '6' ->
-                            '六'
-
-                        '7' ->
-                            '七'
-
-                        '8' ->
-                            '八'
-
-                        '9' ->
-                            '九'
-
-                        _ ->
-                            '?'
-                )
-                a
+            ( a |> Maybe.andThen (\a -> Dict.get a digits)
             , b
             )
 
