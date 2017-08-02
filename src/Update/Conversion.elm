@@ -27,71 +27,48 @@ toDigit position number =
 
                 _ ->
                     Just number
+
+        mapZero digit =
+            ( greaterZero
+            , Just digit
+            )
+
+        mapSignificant digit =
+            ( greaterOne
+            , Just digit
+            )
     in
         case position % 4 of
             0 ->
                 case position // 4 of
                     0 ->
-                        ( case number of
-                            '0' ->
-                                Nothing
-
-                            _ ->
-                                Just number
+                        ( greaterZero
                         , Nothing
                         )
 
                     1 ->
-                        ( case number of
-                            '0' ->
-                                Nothing
-
-                            _ ->
-                                Just number
-                        , Just '万'
-                        )
+                        mapZero '万'
 
                     2 ->
-                        ( case number of
-                            '0' ->
-                                Nothing
-
-                            _ ->
-                                Just number
-                        , Just '億'
-                        )
+                        mapZero '億'
 
                     3 ->
-                        ( case number of
-                            '0' ->
-                                Nothing
-
-                            _ ->
-                                Just number
-                        , Just '兆'
-                        )
+                        mapZero '兆'
 
                     4 ->
-                        ( case number of
-                            '0' ->
-                                Nothing
-
-                            _ ->
-                                Just number
-                        , Just '京'
-                        )
+                        mapZero '京'
 
                     _ ->
                         ( Nothing, Nothing )
 
             1 ->
-                ( greaterOne, Just '十' )
+                mapSignificant '十'
 
             2 ->
-                ( greaterOne, Just '百' )
+                mapSignificant '百'
 
             3 ->
-                ( greaterOne, Just '千' )
+                mapSignificant '千'
 
             _ ->
                 ( Nothing, Nothing )
@@ -101,42 +78,43 @@ arabicToJapanese : String -> String
 arabicToJapanese arabic =
     let
         convertNumber ( a, b ) =
-            ( case a of
-                Nothing ->
-                    Nothing
+            ( Maybe.map
+                (\a ->
+                    case a of
+                        '0' ->
+                            '○'
 
-                Just '0' ->
-                    Just '○'
+                        '1' ->
+                            '一'
 
-                Just '1' ->
-                    Just '一'
+                        '2' ->
+                            '二'
 
-                Just '2' ->
-                    Just '二'
+                        '3' ->
+                            '三'
 
-                Just '3' ->
-                    Just '三'
+                        '4' ->
+                            '四'
 
-                Just '4' ->
-                    Just '四'
+                        '5' ->
+                            '五'
 
-                Just '5' ->
-                    Just '五'
+                        '6' ->
+                            '六'
 
-                Just '6' ->
-                    Just '六'
+                        '7' ->
+                            '七'
 
-                Just '7' ->
-                    Just '七'
+                        '8' ->
+                            '八'
 
-                Just '8' ->
-                    Just '八'
+                        '9' ->
+                            '九'
 
-                Just '9' ->
-                    Just '九'
-
-                _ ->
-                    Nothing
+                        _ ->
+                            '?'
+                )
+                a
             , b
             )
 
