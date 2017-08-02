@@ -17,15 +17,13 @@ SRC := $(SRC_PATH)/Main.elm $(SRC_JS) $(SRC_ELM)
 
 all: $(TARGET)
 
-$(TARGET): $(BUILD)
-
 $(BUILD):
 	mkdir $@
 
 $(BUILD)/main.js: $(SRC) $(BUILD)
 	$(ELM_MAKE) $< --output $@ $(ELM_MAKE_FLAG)
 
-$(BUILD)/%.html: %.html $(BUILD)
+$(BUILD)/%.html: static/%.html $(BUILD)
 	cp $< $@
 
 format: $(SRC_ELM) $(TEST_ELM)
