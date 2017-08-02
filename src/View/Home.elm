@@ -11,15 +11,18 @@ import Msg.Conversion
 view : Model -> List (Html Msg.Msg)
 view model =
     [ div [ class "content" ]
-        [ p []
+        [ h1 []
             [ text "アラビア数字変換"
             ]
         ]
     , Html.form []
-        [ label []
+        [ label
+            [ class "label"
+            ]
             [ text "アラビア数字"
             , input
                 [ placeholder "入力ください"
+                , class "input"
                 , onInput (Msg.Conversion << Msg.Conversion.EnterArabic)
                 , value <|
                     Maybe.withDefault "" <|
@@ -28,10 +31,13 @@ view model =
                 []
             ]
         , br [] []
-        , label []
+        , label
+            [ class "label"
+            ]
             [ text "漢数字"
             , input
                 [ placeholder "結果"
+                , class "input"
                 , disabled True
                 , value <|
                     Maybe.withDefault "" <|

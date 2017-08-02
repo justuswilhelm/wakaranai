@@ -171,12 +171,16 @@ updateConversion input model =
             model.conversion
 
         arabic =
-            case Result.toMaybe <| String.toInt input of
-                Nothing ->
-                    model.conversion.arabic
+            case input of
+                "" ->
+                    Nothing
+                input ->
+                    case Result.toMaybe <| String.toInt input of
+                        Nothing ->
+                            model.conversion.arabic
 
-                result ->
-                    Just input
+                        result ->
+                            Just input
 
         japanese =
             Maybe.map arabicToJapanese arabic |> Debug.log "japanese"

@@ -27,24 +27,15 @@ viewNav page =
         ]
 
 
-viewFooter : Html Msg
-viewFooter =
-    footer
-        [ class "footer" ]
-        [ p [] [ text "This is the footer" ]
-        ]
-
-
 view : Model -> Html Msg
 view model =
     div []
-        [ viewNav model.pageState.page
-        , section [ class "section" ] <|
+        [ section [ class "section" ] <|
             case model.pageState.page of
                 Home ->
                     View.Home.view model
 
                 About ->
                     View.About.view model
-        , viewFooter
+        , viewNav model.pageState.page
         ]
