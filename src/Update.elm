@@ -1,12 +1,12 @@
 module Update exposing (update)
 
 import Model exposing (Model)
-import Msg exposing (..)
+import Msg
 import Update.PageState
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg =
     case msg of
-        Navigate page ->
+        Msg.PageState msg ->
             Update.PageState.update msg

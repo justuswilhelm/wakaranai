@@ -11,6 +11,7 @@ import Html
 import Html.Attributes
 import UrlParser exposing (Parser, (</>), s, int, string, map, oneOf, parseHash)
 import Msg
+import Msg.PageState
 import Navigation
 import Model.PageState exposing (Page(..))
 import Model
@@ -26,7 +27,10 @@ route =
 
 routeMsg : Navigation.Location -> Msg.Msg
 routeMsg loc =
-    Msg.Navigate <| Maybe.withDefault Home <| parseHash route loc
+    parseHash route loc
+        |> Maybe.withDefault Home
+        |> Msg.PageState.Navigate
+        |> Msg.PageState
 
 
 routeInit : Navigation.Location -> Model.Model

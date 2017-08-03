@@ -1,7 +1,7 @@
-module Msg exposing (..)
+module Msg exposing (Msg(..))
 
-import Model.PageState exposing (Page)
+import Msg.PageState
 
 
 type Msg
-    = Navigate Page
+    = PageState Msg.PageState.Msg
