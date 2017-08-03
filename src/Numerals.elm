@@ -3,8 +3,8 @@ module Numerals exposing (arabicToJapanese)
 import Dict
 
 
-toDigit : Int -> Char -> ( Maybe Char, Maybe Char )
-toDigit position number =
+toJapaneseDigit : Int -> Char -> ( Maybe Char, Maybe Char )
+toJapaneseDigit position number =
     let
         greaterOne =
             case number of
@@ -116,7 +116,7 @@ arabicToJapanese arabic =
         arabic
             |> String.toList
             |> List.reverse
-            |> List.indexedMap toDigit
+            |> List.indexedMap toJapaneseDigit
             |> List.map convertNumber
             |> List.map collapse
             |> List.foldl (++) []
