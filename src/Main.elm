@@ -6,11 +6,14 @@ import Navigation
 import Update
 import View
 import Router
+import Cmds.Session
 
 
 init : Navigation.Location -> ( Model.Model, Cmd Msg.Msg )
 init loc =
-    ( Router.routeInit loc, Cmd.none )
+    ( Router.routeInit loc
+    , Cmds.Session.getTime
+    )
 
 
 main : Program Never Model.Model Msg.Msg
