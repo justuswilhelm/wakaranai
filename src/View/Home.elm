@@ -20,7 +20,7 @@ view model =
             [ label [ class "label" ] [ text "アラビア数字" ]
             , div [ class "control" ]
                 [ input
-                    [ placeholder "入力ください"
+                    [ placeholder "入力してください"
                     , class "input"
                     , onInput (Msg.Conversion << Msg.Conversion.EnterArabic)
                     , value <|
