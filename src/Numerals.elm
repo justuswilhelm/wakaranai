@@ -1,6 +1,66 @@
-module Numerals exposing (arabicToJapanese)
+module Numerals
+    exposing
+        ( arabicToJapanese
+        , toArabicDigit
+        )
 
 import Dict
+
+
+japaneseDigits : Dict.Dict Char Char
+japaneseDigits =
+    Dict.fromList
+        [ ( '1', '一' )
+        , ( '2', '二' )
+        , ( '3', '三' )
+        , ( '4', '四' )
+        , ( '5', '五' )
+        , ( '6', '六' )
+        , ( '7', '七' )
+        , ( '8', '八' )
+        , ( '9', '九' )
+        ]
+
+
+arabicDigits : Dict.Dict Char Int
+arabicDigits =
+    Dict.fromList
+        [ ( '一', 1 )
+        , ( '二', 2 )
+        , ( '三', 3 )
+        , ( '四', 4 )
+        , ( '五', 5 )
+        , ( '六', 6 )
+        , ( '七', 7 )
+        , ( '八', 8 )
+        , ( '九', 9 )
+        ]
+
+
+toArabicDigit : ( Maybe Char, Maybe Char ) -> Maybe Int
+toArabicDigit ( maybeDigit, maybePosition ) =
+    let
+        digit =
+            maybeDigit
+                |> Maybe.andThen (\digit -> Dict.get digit arabicDigits)
+    in
+        maybePosition
+            |> Maybe.andThen
+                (\position ->
+                    case position of
+                        '十' ->
+                            Just 10
+
+                        '百' ->
+                            Just 100
+
+                        '千' ->
+                            Just 1000
+
+                        _ ->
+                            Nothing
+                )
+            |> Maybe.map2 (*) digit
 
 
 toJapaneseDigit : Int -> Char -> ( Maybe Char, Maybe Char )
@@ -80,22 +140,8 @@ toJapaneseDigit position number =
 arabicToJapanese : String -> String
 arabicToJapanese arabic =
     let
-        digits =
-            Dict.fromList
-                [ ( '0', '○' )
-                , ( '1', '一' )
-                , ( '2', '二' )
-                , ( '3', '三' )
-                , ( '4', '四' )
-                , ( '5', '五' )
-                , ( '6', '六' )
-                , ( '7', '七' )
-                , ( '8', '八' )
-                , ( '9', '九' )
-                ]
-
         convertNumber ( a, b ) =
-            ( a |> Maybe.andThen (\a -> Dict.get a digits)
+            ( a |> Maybe.andThen (\a -> Dict.get a japaneseDigits)
             , b
             )
 
