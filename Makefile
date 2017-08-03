@@ -2,6 +2,7 @@
 
 SRC_PATH := src
 STATIC_PATH := static
+TEST_PATH := tests
 
 ELM_MAKE := elm-make
 ELM_MAKE_FLAG := --warn --yes
@@ -9,8 +10,9 @@ ELM_MAKE_FLAG := --warn --yes
 BUILD := build
 TARGET_JS := $(BUILD)/main.js
 TARGET := $(TARGET_JS) $(BUILD)/index.html
-SRC_JS := $(shell find $(SRC_PATH) -name '*.elm')
-SRC_ELM := $(shell find $(SRC_PATH) -name '*.js')
+SRC_JS := $(shell find $(SRC_PATH) -name '*.js')
+SRC_ELM := $(shell find $(SRC_PATH) -name '*.elm')
+TEST_ELM := $(wildcard $(TEST_PATH)/*.elm)
 SRC := $(SRC_PATH)/Main.elm $(SRC_JS) $(SRC_ELM)
 
 all: $(TARGET)
@@ -26,7 +28,7 @@ $(BUILD)/main.js: $(SRC) $(BUILD)
 $(BUILD)/%.html: %.html $(BUILD)
 	cp $< $@
 
-format: $(filter %.elm, $(SRC))
+format: $(SRC_ELM) $(TEST_ELM)
 	elm-format-0.18 $^ --yes
 
 clean:
