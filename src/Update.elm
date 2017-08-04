@@ -4,6 +4,7 @@ import Model exposing (Model)
 import Msg
 import Update.Conversion
 import Update.PageState
+import Update.Session
 
 
 update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
@@ -14,3 +15,6 @@ update msg =
 
         Msg.Conversion msg ->
             Update.Conversion.update msg
+
+        Msg.Session msg ->
+            Update.Session.update msg
