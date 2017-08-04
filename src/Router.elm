@@ -20,32 +20,32 @@ import Model
 route : Parser (Page -> a) a
 route =
     oneOf
-        [ map Home (s "home")
-        , map About (s "about")
+        [ map HomeP (s "home")
+        , map AboutP (s "about")
         ]
 
 
 routeMsg : Navigation.Location -> Msg.Msg
 routeMsg loc =
     parseHash route loc
-        |> Maybe.withDefault Home
+        |> Maybe.withDefault HomeP
         |> Msg.PageState.Navigate
         |> Msg.PageState
 
 
 routeInit : Navigation.Location -> Model.Model
 routeInit loc =
-    Model.init <| Maybe.withDefault Home <| parseHash route loc
+    Model.init <| Maybe.withDefault HomeP <| parseHash route loc
 
 
 reverse : Page -> String
 reverse page =
     ((++) "#") <|
         case page of
-            Home ->
+            HomeP ->
                 "home"
 
-            About ->
+            AboutP ->
                 "about"
 
 
