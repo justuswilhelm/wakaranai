@@ -16,12 +16,12 @@ viewNav page =
         [ class "navbar" ]
         [ div [ class "container" ]
             [ a
-                [ reverseHref Home
+                [ reverseHref HomeP
                 , class "navbar-item"
                 ]
                 [ text "Home" ]
             , a
-                [ reverseHref About
+                [ reverseHref AboutP
                 , class "navbar-item"
                 ]
                 [ text "About" ]
@@ -35,10 +35,10 @@ view model =
         [ section [ class "section" ]
             [ div [ class "container" ] <|
                 case model.pageState.page of
-                    Home ->
+                    HomeP ->
                         View.Home.view model
 
-                    About ->
+                    AboutP ->
                         View.About.view model
             ]
         , viewNav model.pageState.page
