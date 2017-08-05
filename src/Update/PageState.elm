@@ -1,10 +1,10 @@
 module Update.PageState exposing (update)
 
+import Cmds.Session
+import Model exposing (Model)
 import Model.PageState exposing (Page(..))
 import Msg
 import Msg.PageState exposing (..)
-import Model exposing (Model)
-import Cmds.Session
 
 
 loadContent : Page -> Cmd Msg.Msg

@@ -1,11 +1,15 @@
 module Main exposing (..)
 
+import Navigation
+
+
+--
+
 import Model
 import Msg
-import Navigation
+import Router
 import Update
 import View
-import Router
 
 
 init : Navigation.Location -> ( Model.Model, Cmd Msg.Msg )

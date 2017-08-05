@@ -2,6 +2,10 @@ module View.Home exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+
+
+--
+
 import Model exposing (Model)
 import Msg exposing (..)
 

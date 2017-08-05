@@ -9,12 +9,16 @@ module Router
 
 import Html
 import Html.Attributes
+import Navigation
 import UrlParser exposing (Parser, (</>), s, int, string, map, oneOf, parseHash)
+
+
+--
+
+import Model
+import Model.PageState exposing (Page(..))
 import Msg
 import Msg.PageState
-import Navigation
-import Model.PageState exposing (Page(..))
-import Model
 import Update.PageState
 
 

@@ -2,12 +2,16 @@ module View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+
+
+--
+
 import Model exposing (Model)
-import Msg exposing (..)
 import Model.PageState exposing (Page(..))
+import Msg exposing (..)
+import Router exposing (reverseHref)
 import View.About
 import View.Home
-import Router exposing (reverseHref)
 
 
 viewNav : Page -> Html Msg

@@ -1,8 +1,8 @@
 module Update.Session exposing (update)
 
+import Model exposing (Model)
 import Msg
 import Msg.Session exposing (..)
-import Model exposing (Model)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg.Msg )
