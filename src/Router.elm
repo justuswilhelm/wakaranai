@@ -15,6 +15,7 @@ import Msg.PageState
 import Navigation
 import Model.PageState exposing (Page(..))
 import Model
+import Update.PageState
 
 
 route : Parser (Page -> a) a
@@ -33,9 +34,13 @@ routeMsg loc =
         |> Msg.PageState
 
 
-routeInit : Navigation.Location -> Model.Model
-routeInit loc =
-    Model.init <| Maybe.withDefault HomeP <| parseHash route loc
+routeInit : Navigation.Location -> Model.Model -> ( Model.Model, Cmd Msg.Msg )
+routeInit loc model =
+    loc
+        |> parseHash route
+        |> Maybe.withDefault HomeP
+        |> Msg.PageState.Navigate
+        |> (flip Update.PageState.update) model
 
 
 reverse : Page -> String

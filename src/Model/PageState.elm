@@ -15,6 +15,6 @@ type alias PageState =
     { page : Page }
 
 
-init : Page -> PageState
-init page =
-    { page = page }
+init : PageState
+init =
+    { page = HomeP }
