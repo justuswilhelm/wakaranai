@@ -193,6 +193,29 @@ update msg =
 - Route names shall be appended with a `P`. A route called `Session` will
 therefore be named `SessionP`.
 
+## Import formatting
+
+Keep Library, Third-Party and First-Party imports separate.
+
+Good:
+
+```
+import Html exposing (..)
+import Html.Attributes exposing (..)
+
+
+--
+
+import Model exposing (Model)
+```
+
+Not good:
+```
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Model exposing (Model)
+```
+
 ## Testing
 
 Run
