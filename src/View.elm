@@ -8,13 +8,14 @@ import Html.Attributes exposing (..)
 
 import Model exposing (Model)
 import Model.PageState exposing (Page(..))
-import Msg exposing (..)
+import Msg
+import Msg.PageState
 import Router exposing (reverseHref)
 import View.About
 import View.Home
 
 
-viewNav : Page -> Html Msg
+viewNav : Page -> Html Msg.PageState.Msg
 viewNav page =
     nav
         [ class "navbar" ]
@@ -31,7 +32,7 @@ viewNav page =
         ]
 
 
-viewFooter : Html Msg
+viewFooter : Html Msg.Msg
 viewFooter =
     footer
         [ class "footer" ]
@@ -39,10 +40,12 @@ viewFooter =
         ]
 
 
-view : Model -> Html Msg
+view : Model -> Html Msg.Msg
 view model =
     div []
-        [ viewNav model.pageState.page
+        [ model.pageState.page
+            |> viewNav
+            |> Html.map Msg.PageState
         , section [ class "section" ] <|
             case model.pageState.page of
                 HomeP ->
