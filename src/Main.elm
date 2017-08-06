@@ -21,7 +21,7 @@ init loc =
 main : Program Never Model.Model Msg.Msg
 main =
     Navigation.program
-        Router.routeMsg
+        (Router.routeMsg >> Msg.PageState)
         { init = init
         , update = Update.update
         , view = View.view

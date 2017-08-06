@@ -30,12 +30,11 @@ route =
         ]
 
 
-routeMsg : Navigation.Location -> Msg.Msg
+routeMsg : Navigation.Location -> Msg.PageState.Msg
 routeMsg loc =
     parseHash route loc
         |> Maybe.withDefault HomeP
         |> Msg.PageState.Navigate
-        |> Msg.PageState
 
 
 routeInit : Navigation.Location -> Model.Model -> ( Model.Model, Cmd Msg.Msg )
@@ -58,6 +57,6 @@ reverse page =
                 "about"
 
 
-reverseHref : Page -> Html.Attribute Msg.Msg
+reverseHref : Page -> Html.Attribute Msg.PageState.Msg
 reverseHref =
     Html.Attributes.href << reverse
